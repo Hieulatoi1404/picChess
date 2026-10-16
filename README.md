@@ -20,3 +20,7 @@ Progress
 ### Update 1
 - Implemented Synthetic data generation to train upcoming AI models
 - Implemented a helper compressing module to compress chess piece icon from 250x250 -> 32x32
+### Update 2
+- Implemented Synthetic Dataset with Image Processing (Torch + Albumentations) to provide synthetic dataset pipeline for training AI.
+- Refactor helperModule.py to use OOP for modularity and usage between files.
+- Restructure Folders/Files.
