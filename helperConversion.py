@@ -2,6 +2,8 @@ import os
 import cairosvg
 
 LICHESS_TO_FEN = {
+    # For piece naming format, take a look in main.py
+
     'wP': 'P', 'wN': 'N', 'wB': 'B', 'wR': 'R', 'wQ': 'Q', 'wK': 'K',
     'bP': 'p', 'bN': 'n', 'bB': 'b', 'bR': 'r', 'bQ': 'q', 'bK': 'k'
 }
@@ -17,6 +19,6 @@ def convert_lichess_theme(svg_dir: str, out_dir: str, size=32):
         cairosvg.svg2png(url=svg_path, write_to=out_path, output_width=size, output_height=size)
 
 SVG_DIR = "Resources/piece/alpha"
-OUT_DIR = "pieceIcon"
+OUT_DIR = "Resources/processedPieceIcon"
 
 convert_lichess_theme(SVG_DIR, OUT_DIR)

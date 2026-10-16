@@ -9,19 +9,27 @@ CLASS_MAP = {
     'p': 7, 'n': 8, 'b': 9, 'r': 10, 'q': 11, 'k': 12
 }
 
-spritesPathList = {
-    'P': "pieceIcon/wP.png", 'N': "pieceIcon/wN.png", 'B': "pieceIcon/wB.png",
-    'R': "pieceIcon/wR.png", 'Q': "pieceIcon/wQ.png", 'K': "pieceIcon/wK.png",
-    'p': "pieceIcon/bP.png", 'n': "pieceIcon/bN.png", 'b': "pieceIcon/bB.png",
-    'r': "pieceIcon/bR.png", 'q': "pieceIcon/bQ.png", 'k': "pieceIcon/bK.png"
+DEFAULT_SPRITE_PREFIX = "Resources/processedPieceIcon/"
+DEFAULT_PIECE_NAME_LIST = {
+    # Lila's piece name format is "{color}{piece_name}"
+    # e.g. wB = White Bishop, bN = Black Knight
+
+    # FEN piece name format is "{piece_name}", capitalized mean white otherwise black
+    # e.g. P = White pawn, p = Black pawn
+
+    'P': "wP.png", 'N': "wN.png", 'B': "wB.png",
+    'R': "wR.png", 'Q': "wQ.png", 'K': "wK.png",
+    'p': "bP.png", 'n': "bN.png", 'b': "bB.png",
+    'r': "bR.png", 'q': "bQ.png", 'k': "bK.png"
 }
 
-
-def loadImg(spritesPathArr : dict[str, str]):
+# This loads all the pieces icon into an a dictionary
+# Unless the file name of icon or path prefix are different from the default ones you don't need to provide any parameter
+def loadImg(spriteNameArr : dict[str, str] = DEFAULT_PIECE_NAME_LIST, spritePathPrefix : str = DEFAULT_SPRITE_PREFIX) -> dict:
     returnDict = {}
 
-    for k, v in spritesPathArr.items():
-        im = Image.open(v)
+    for k, v in spriteNameArr.items():
+        im = Image.open(f"{spritePathPrefix}{v}")
 
         returnDict[k] = im
     
@@ -67,6 +75,6 @@ def generateRandomSample(sprites = None, lightSqCol = (240,217,181), darkSqCol =
     canvas.show()
     return np.array(canvas.convert('RGB')), arr
 
-spritesList = loadImg(spritesPathList)
+spritesList = loadImg()
 
 generateRandomSample(spritesList)
